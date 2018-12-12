@@ -1,0 +1,5 @@
+import "init"
+import "components/navbar/navbar"
+import "components/page/page"
+import "components/footer/footer"
+import "components/rate/rate"

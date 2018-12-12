@@ -1,0 +1,16 @@
+nav.navbar.is-fixed-top
+  .container
+    .navbar-brand
+      a.navbar-item href=(root_path)
+        = t('currency_rate')
+      a.navbar-burger.js-burger data-target="navMenu" aria-expanded="false" role="button"
+        span
+        span
+        span
+
+    .navbar-menu#navMenu
+      .navbar-end
+        a.navbar-item href=(root_path) class=('is-active' if current_page?('/'))
+          = t('rate')
+
+

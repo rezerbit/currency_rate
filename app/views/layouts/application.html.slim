@@ -1,0 +1,14 @@
+doctype html
+html
+  head
+    title CurrencyTickers
+    = csrf_meta_tags
+    = csp_meta_tag
+    = stylesheet_pack_tag 'application'
+
+  body
+    = c('navbar')
+    = c('page')
+    = c('footer')
+
+    = javascript_pack_tag 'application'

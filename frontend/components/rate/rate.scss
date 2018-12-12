@@ -1,0 +1,22 @@
+.rate {
+  margin: 0 auto;
+  width: 200px;
+
+  &__value {
+    font-size: 30px;
+    color: #3589eb;
+  }
+
+  &__loader {
+    display: block;
+    margin: 0 auto;
+    width: 50px;
+    height: 50px;
+  }
+
+  &__sign {
+    display: none;
+    font-size: 24px;
+    color: #b5b5b5;
+  }
+}

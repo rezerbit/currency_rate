@@ -1,0 +1,15 @@
+.navbar {
+  background-color: #bccf03;
+  border-bottom: 1px solid #eceef0;
+
+  & .navbar-brand {
+    & > .navbar-item {
+      font-size: 24px;
+      font-weight: bold;
+    }
+  }
+
+  & .navbar-item.is-active {
+    font-weight: bold;
+  }
+}

@@ -1,3 +1,10 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  root to: 'rates#show'
+  resource :rate, only: [:show]
+
+  require 'sidekiq/web'
+  require 'sidekiq/cron/web'
+  mount Sidekiq::Web => '/sidekiq'
+
+  mount ActionCable.server, at: '/cable'
 end
