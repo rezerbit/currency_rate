@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
   root to: 'rates#show'
-  resource :rate, only: [:show]
+  resource :rate, only: :show
+
+  namespace :api do
+    resource :current_rate, only: :show
+  end
 
   require 'sidekiq/web'
   require 'sidekiq/cron/web'

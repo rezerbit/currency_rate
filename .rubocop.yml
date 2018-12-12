@@ -27,6 +27,7 @@ Style/Documentation:
     - app/models/application_record.rb
     - app/helpers/application_helper.rb
     - app/controllers/application_controller.rb
+    - app/controllers/concerns/**/*
     - db/migrate/*
     - spec/**/*
     - app/decorators/*

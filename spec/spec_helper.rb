@@ -13,7 +13,7 @@ SimpleCov.start('rails') do
   add_filter 'spec/'
   add_filter 'bin/'
 
-  minimum_coverage 0
+  minimum_coverage 60
 end
 
 if ENV['CODECOV_TOKEN']
@@ -53,6 +53,8 @@ RSpec.configure do |config|
     config.filter_run_including focus: true
     config.run_all_when_everything_filtered = true
   end
+
+  config.include Helpers
 end
 
 RSpec::Sidekiq.configure do |config|
