@@ -24,18 +24,18 @@ function get(url) {
     request.addEventListener("error", () => {
       fail(new Error("Network error"))
     })
+
+    request.responseType = "json"
     request.send()
   })
 }
 
 function renderCurrentRate() {
   get("/api/current_rate").then(
-    value => {
-      changeRate(value)
+    data => {
+      changeRate(data.value)
     },
-    () => {
-      changeRate("Error :(")
-    }
+    () => {}
   )
 }
 
