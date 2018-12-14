@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'sidekiq-limit_fetch'
+
 sidekiq_config = { url: ENV['REDIS_URL'] }
 
 Sidekiq.configure_server { |config| config.redis = sidekiq_config }

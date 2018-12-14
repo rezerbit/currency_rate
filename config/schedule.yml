@@ -1,0 +1,3 @@
+pull_rates:
+  cron: "0 */1 * * 1-5" # At minute 0 past every hour on every day-of-week from Monday through Friday.
+  class: "PullRateWorker"

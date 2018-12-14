@@ -46,8 +46,8 @@ document.addEventListener("DOMContentLoaded", () => {
       connected() {
         renderCurrentRate()
       },
-      received(value) {
-        changeRate(value)
+      received(data) {
+        changeRate(data.value)
       }
     }
   )

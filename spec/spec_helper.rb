@@ -13,7 +13,7 @@ SimpleCov.start('rails') do
   add_filter 'spec/'
   add_filter 'bin/'
 
-  minimum_coverage 60
+  minimum_coverage 80
 end
 
 if ENV['CODECOV_TOKEN']
