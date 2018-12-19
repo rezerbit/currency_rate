@@ -3,7 +3,7 @@
 # Creates a forced rate.
 class ForcedRatesController < ApplicationController
   def new
-    @rate = Rate.forced.last || Rate.new
+    @rate = ForcedRate.last || Rate.new
   end
 
   # TODO

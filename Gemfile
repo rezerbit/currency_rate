@@ -17,6 +17,7 @@ gem 'sidekiq', '~> 5.2.1'
 gem 'sidekiq-cron', '~> 1.0.4'
 gem 'sidekiq-limit_fetch', '~> 3.4.0'
 gem 'slim-rails', '~> 3.1.3'
+gem 'validates_timeliness', '~> 5.0.0.alpha3'
 gem 'webpacker', '~> 3.5.5'
 
 group :development, :test do

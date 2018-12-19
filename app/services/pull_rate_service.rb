@@ -18,7 +18,7 @@ class PullRateService
   end
 
   def call
-    return if @last_rate&.forced?
+    return if @last_rate.is_a?(ForcedRate)
 
     parse
     build_rate
@@ -50,7 +50,7 @@ class PullRateService
   end
 
   def build_rate
-    @rate = Rate.new(value: value * nominal)
+    @rate = FetchedRate.new(value: value * nominal)
   end
 
   def value

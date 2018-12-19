@@ -10,16 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_14_075452) do
+ActiveRecord::Schema.define(version: 2018_12_19_154918) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "rates", force: :cascade do |t|
-    t.decimal "value", precision: 8, scale: 4, null: false
-    t.datetime "created_at", null: false
-    t.boolean "forced", default: false, null: false
-    t.datetime "expires_at"
-  end
+# Could not dump table "rates" because of following StandardError
+#   Unknown type 'rate_types' for column 'type'
 
 end

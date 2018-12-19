@@ -11,7 +11,7 @@ RSpec.describe PullRateService do
     end
 
     context 'when a last rate is forced' do
-      let!(:forced_rate) { create :rate, forced: true }
+      let!(:forced_rate) { create :forced_rate }
 
       it 'not save rate' do
         expect { described_class.call }.not_to change { Rate.count }.from 1
@@ -19,7 +19,7 @@ RSpec.describe PullRateService do
     end
 
     context 'when a last rate is equal an extracted rate' do
-      let!(:last_rate) { create :rate, value: 66.78 }
+      let!(:last_rate) { create :fetched_rate, value: 66.78 }
 
       it 'not save rate' do
         expect { described_class.call }.not_to change { Rate.count }.from 1

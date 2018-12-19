@@ -11,6 +11,6 @@
 #  created_at :datetime         not null
 #  expires_at :datetime
 #
-class Rate < ApplicationRecord
-  validates :value, presence: true, numericality: true, format: { with: /\A\d{1,4}(.\d{0,4})?\z/ }
+class ForcedRate < Rate
+  validates :expires_at, timeliness: { type: :datetime, after: Time.current, allow_blank: false }
 end
