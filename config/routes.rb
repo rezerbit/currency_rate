@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root to: 'ticker#show'
+  root to: 'tickers#show'
   get '/admin', to: 'forced_rates#new'
 
   resource :ticker, only: :show

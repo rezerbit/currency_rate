@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe TickerController, type: :controller do
+RSpec.describe TickersController, type: :controller do
   describe 'GET #show' do
     it 'returns http success' do
       get :show

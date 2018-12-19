@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
 # Return a currency rate ticker.
-class TickerController < ApplicationController
+class TickersController < ApplicationController
   def show; end
 end
