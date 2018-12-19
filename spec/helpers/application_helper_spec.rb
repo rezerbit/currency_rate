@@ -25,4 +25,28 @@ RSpec.describe ApplicationHelper, type: :helper do
       helper.c('page')
     end
   end
+
+  describe '#alert_class_for' do
+    subject { helper.alert_class_for(flash_type) }
+
+    context 'when the flash type is success' do
+      let(:flash_type) { 'success' }
+      it { is_expected.to eq 'is-success' }
+    end
+
+    context 'when the flash type is success' do
+      let(:flash_type) { 'error' }
+      it { is_expected.to eq 'is-danger' }
+    end
+
+    context 'when the flash type is success' do
+      let(:flash_type) { 'alert' }
+      it { is_expected.to eq 'is-warning' }
+    end
+
+    context 'when the flash type is success' do
+      let(:flash_type) { 'notice' }
+      it { is_expected.to eq 'is-info' }
+    end
+  end
 end

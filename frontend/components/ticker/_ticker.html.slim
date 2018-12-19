@@ -1,0 +1,10 @@
+.ticker.card
+  .card-header
+    p.card-header-title
+      = t('currency_code')
+  .card-content
+    .ticker__value.js-ticker__value
+      img.ticker__loader src = (asset_pack_path 'images/loader.svg')
+    '
+    span.ticker__sign.js-ticker__sign
+      = t('currency_sign')

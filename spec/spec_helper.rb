@@ -6,15 +6,15 @@ require 'database_cleaner'
 require 'sidekiq/testing'
 require 'faker'
 
-require 'rails_helper'
-
 require 'simplecov'
 SimpleCov.start('rails') do
   add_filter 'spec/'
   add_filter 'bin/'
 
-  minimum_coverage 80
+  minimum_coverage 90
 end
+
+require 'rails_helper'
 
 if ENV['CODECOV_TOKEN']
   require 'codecov'

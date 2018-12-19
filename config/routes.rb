@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
-  root to: 'rates#show'
-  resource :rate, only: :show
+  root to: 'ticker#show'
+  get '/admin', to: 'forced_rates#new'
+
+  resource :ticker, only: :show
+  resources :forced_rates, only: %i[new create]
 
   namespace :api do
     resource :current_rate, only: :show

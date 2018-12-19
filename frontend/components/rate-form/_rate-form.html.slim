@@ -1,0 +1,26 @@
+.rate-form.column.is-6.is-offset-3
+  .box
+    .rate-form__title
+      = t('create_forced_rate')
+
+    = form_for @rate, url: forced_rates_path, method: :post do |f|
+      = hidden_field_tag :timezone, '', class: 'js-rate-form__timezone'
+
+      .field
+        = f.label :value, class: 'label'
+        .control
+          = f.text_field :value, placeholder: t('rate_value_placeholder'), class: 'input'
+
+      .field
+        = f.label :expires_at, class: 'label'
+        .control
+          = f.text_field :expires_at, placeholder: t('rate_expires_at_placeholder'), class: 'input flatpickr'
+
+      .field.is-grouped.is-grouped-right
+        .control
+          a.button.is-text href=(root_path)
+            = t('back')
+
+        .control
+          = f.submit t('create'), class: 'button is-primary'
+

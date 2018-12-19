@@ -4,3 +4,9 @@ en:
   currency_code: USD
   currency_sign: ₽
   copyright: © 2018 Rezerbit
+  admin: Admin
+  rate_has_been_forced: The rate has been forced!
+  create_forced_rate: Create forced rate
+  rate_value_placeholder: '00.0000'
+  rate_expires_at_placeholder: Select date and time..
+  create: Create

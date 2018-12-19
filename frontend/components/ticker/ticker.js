@@ -1,13 +1,13 @@
 import createChannel from "client/cable"
-import "./rate.scss"
+import "./ticker.scss"
 import "images/loader.svg"
 
 function changeRate(value) {
-  const rate = document.querySelector(`.js-rate__value`)
+  const rate = document.querySelector(`.js-ticker__value`)
   rate.innerText = value
   rate.style.display = "inline"
 
-  const sign = document.querySelector(`.js-rate__sign`)
+  const sign = document.querySelector(`.js-ticker__sign`)
   sign.style.display = "inline"
 }
 
@@ -40,15 +40,17 @@ function renderCurrentRate() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  createChannel(
-    { channel: "RateChannel" },
-    {
-      connected() {
-        renderCurrentRate()
-      },
-      received(data) {
-        changeRate(data.value)
+  if (document.querySelector(".js-ticker__value")) {
+    createChannel(
+      { channel: "RateChannel" },
+      {
+        connected() {
+          renderCurrentRate()
+        },
+        received(data) {
+          changeRate(data.value)
+        }
       }
-    }
-  )
+    )
+  }
 })

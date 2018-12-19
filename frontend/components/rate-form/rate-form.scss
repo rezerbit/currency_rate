@@ -1,0 +1,14 @@
+@import "flatpickr/dist/flatpickr.min.css";
+
+.rate-form {
+  & .rate-form__title {
+    padding-bottom: 30px;
+    font-size: 1.5em;
+  }
+}
+
+.flatpickr-day.selected,
+.flatpickr-day.selected:hover {
+  background: #3589eb;
+  border-color: #4b76a9;
+}
