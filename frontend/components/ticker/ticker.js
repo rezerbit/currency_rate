@@ -3,11 +3,11 @@ import "./ticker.scss"
 import "images/loader.svg"
 
 function changeRate(value) {
-  const rate = document.querySelector(`.js-ticker__value`)
+  const rate = document.querySelector(".js-ticker__value")
   rate.innerText = value
   rate.style.display = "inline"
 
-  const sign = document.querySelector(`.js-ticker__sign`)
+  const sign = document.querySelector(".js-ticker__sign")
   sign.style.display = "inline"
 }
 
@@ -17,8 +17,11 @@ function get(url) {
     request.open("GET", url, true)
 
     request.addEventListener("load", () => {
-      if (request.status < 400) succeed(request.response)
-      else fail(new Error(`Request failed:  ${request.statusText}`))
+      if (request.status < 400) {
+        succeed(request.response)
+      } else {
+        fail(new Error(`Request failed:  ${request.statusText}`))
+      }
     })
 
     request.addEventListener("error", () => {
