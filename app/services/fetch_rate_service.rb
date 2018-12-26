@@ -4,7 +4,9 @@ require 'net/http'
 
 # Fetches a currency rate, saves and broadcasts to a websocket.
 class FetchRateService
-  RATES_SOURCE_URL = 'http://www.cbr.ru/scripts/XML_daily.asp'
+  # ATTENTION: http://www.cbr.ru/scripts/XML_daily.asp not work on production.
+  # Use mirror.
+  RATES_SOURCE_URL = 'https://www.cbr-xml-daily.ru/daily.xml'
   CURRENCY_CODE = 'USD'
 
   def self.call

@@ -1,0 +1,25 @@
+FROM ruby:2.5.3
+
+ARG DEBIAN_FRONTEND=noninteractive
+
+RUN apt-get update && \
+    curl --silent --location https://deb.nodesource.com/setup_11.x | bash - && \
+    apt-get install -qq -y --no-install-recommends build-essential nodejs npm less vim && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/* && \
+    npm install --global yarn
+ADD docker/app/entrypoint.sh /usr/sbin
+RUN mkdir -p /app
+WORKDIR /app
+COPY . .
+ENV BUNDLE_PATH=/app/vendor/bundle \
+    BUNDLE_BIN=/app/vendor/bundle/bin \
+    GEM_HOME=/app/vendor/bundle \
+    RAILS_ENV=production \
+    NODE_ENV=production
+ENV PATH="${BUNDLE_BIN}:${PATH}"
+RUN gem update bundle && \
+    bundle install --binstubs="$BUNDLE_BIN" && \
+    yarn install && \
+    rm -rf public/packs
+ENTRYPOINT ["entrypoint.sh"]

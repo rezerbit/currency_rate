@@ -17,12 +17,12 @@ RSpec.describe ForcedRatesController, type: :controller do
     subject { post :create, params: params }
 
     context 'when params are valid' do
-      let(:params) { { forced_rate: { value: 12.1234, expires_at: '2018-12-26T09:00:00.000Z' } } }
+      let(:params) { { forced_rate: { value: 12.1234, expires_at: '2100-12-26T09:00:00.000Z' } } }
       it { is_expected.to redirect_to('/') }
     end
 
     context 'when params are invalid' do
-      let(:params) { { forced_rate: { value: 'INVALID', expires_at: '2018-12-26T09:00:00.000Z' } } }
+      let(:params) { { forced_rate: { value: 'INVALID', expires_at: '2100-12-26T09:00:00.000Z' } } }
 
       before { subject }
 

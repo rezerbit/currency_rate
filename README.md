@@ -13,5 +13,21 @@ docker compose up
 docker exec -ti currency_rate-app bash
 ```
 
+## Deploy
+
+Build and push images
+
+```
+cd docker && ./build_and_push.sh
+```
+
+On server:
+
+```
+cd docker
+vim .env.prod
+./deploy.sh
+```
+
 # License
 MIT

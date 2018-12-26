@@ -21,3 +21,5 @@ yarn-debug.log*
 
 coverage/
 .DS_Store
+
+docker/.env.prod

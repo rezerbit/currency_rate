@@ -1,0 +1,117 @@
+version: "3"
+
+services:
+  web:
+    image: registry.rezerbit.com/currency_rate/production/app
+    ports:
+      - 80
+    depends_on:
+      - db
+      - redis
+      - sidekiq
+    environment:
+      - RAILS_ENV
+      - NODE_ENV
+      - POSTGRES_DB
+      - POSTGRES_USER
+      - POSTGRES_HOST
+      - POSTGRES_PORT
+      - POSTGRES_PASSWORD
+      - REDIS_HOST
+      - REDIS_PORT
+      - REDIS_URL
+      - RAILS_SERVE_STATIC_FILES
+      - ACTION_CABLE_URL
+      - ALLOWED_REQUEST_ORIGINS
+    command: 'bash -c "rm -f /var/run/rails.pid && bundle exec rails s -b 0.0.0.0 -p 80 --pid /var/run/rails.pid"'
+    networks:
+      - nginx-front
+      - default
+    deploy:
+      replicas: 1
+      update_config:
+        delay: 30s
+      restart_policy:
+        condition: on-failure
+      placement:
+        constraints: [node.role == manager]
+
+  db:
+    image: postgres:11
+    environment:
+      - POSTGRES_USER
+      - POSTGRES_PASSWORD
+    ports:
+      - 5432
+    volumes:
+      - pg-data:/var/lib/postgresql/data
+    networks:
+      - default
+    deploy:
+      replicas: 1
+      update_config:
+        parallelism: 1
+        delay: 5s
+      restart_policy:
+        condition: on-failure
+      placement:
+        constraints: [node.role == manager]
+
+  redis:
+    image: redis:4-alpine
+    ports:
+      - 6379
+    volumes:
+      - redis-data:/data
+    networks:
+      - default
+    deploy:
+      replicas: 1
+      update_config:
+        parallelism: 1
+        delay: 5s
+      restart_policy:
+        condition: on-failure
+      placement:
+        constraints: [node.role == manager]
+
+  sidekiq:
+    image: registry.rezerbit.com/currency_rate/production/app
+    command: bundle exec sidekiq -C config/sidekiq.yml
+    ports:
+      - 6379
+    depends_on:
+      - db
+      - redis
+    environment:
+      - RAILS_ENV
+      - NODE_ENV
+      - POSTGRES_DB
+      - POSTGRES_USER
+      - POSTGRES_HOST
+      - POSTGRES_PORT
+      - POSTGRES_PASSWORD
+      - REDIS_HOST
+      - REDIS_PORT
+      - REDIS_URL
+      - RAILS_SERVE_STATIC_FILES
+      - ACTION_CABLE_URL
+      - ALLOWED_REQUEST_ORIGINS
+    networks:
+      - default
+    deploy:
+      replicas: 1
+      update_config:
+        delay: 30s
+      restart_policy:
+        condition: on-failure
+      placement:
+        constraints: [node.role == manager]
+
+volumes:
+  pg-data:
+  redis-data:
+
+networks:
+  nginx-front:
+    external: true
