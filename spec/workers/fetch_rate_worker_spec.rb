@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
-RSpec.describe PullRateWorker do
+RSpec.describe FetchRateWorker do
   it { is_expected.to be_retryable 3 }
   it { is_expected.to be_processed_in :fifo }
 
   describe '#perform' do
     before { allow(Net::HTTP).to receive(:get) { currency_rates_xml } }
 
-    it 'pulls currency rate' do
+    it 'fetches a currency rate' do
       expect { described_class.new.perform }.to change { Rate.last&.value }.to 66.78
     end
   end

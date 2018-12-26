@@ -2,17 +2,16 @@ import flatpickr from "flatpickr"
 import "./rate-form.scss"
 
 document.addEventListener("DOMContentLoaded", () => {
-  if (document.querySelector(".flatpickr")) {
+  const expiresAt = document.querySelector(".flatpickr")
+
+  if (expiresAt) {
     flatpickr(".flatpickr", {
       enableTime: true,
-      dateFormat: "Y-m-d H:i",
-      minDate: new Date(),
+      dateFormat: "Z",
+      altInput: true,
+      altFormat: "Y-m-d H:i",
+      minuteIncrement: 1,
       time_24hr: true
     })
-  }
-
-  const timezone = document.querySelector(".js-rate-form__timezone")
-  if (timezone) {
-    timezone.value = Intl.DateTimeFormat().resolvedOptions().timeZone
   }
 })

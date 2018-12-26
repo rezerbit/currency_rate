@@ -12,5 +12,14 @@
 #  expires_at :datetime
 #
 class ForcedRate < Rate
-  validates :expires_at, timeliness: { type: :datetime, after: Time.current, allow_blank: false }
+  validates(
+    :expires_at,
+    timeliness:
+    {
+      type: :datetime,
+      after: -> { Time.current },
+      allow_blank: false,
+      after_message: I18n.t('forced_rate.after_message')
+    }
+  )
 end

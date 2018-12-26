@@ -11,7 +11,7 @@ SimpleCov.start('rails') do
   add_filter 'spec/'
   add_filter 'bin/'
 
-  minimum_coverage 90
+  minimum_coverage 92
 end
 
 require 'rails_helper'
@@ -38,6 +38,7 @@ RSpec.configure do |config|
   end
 
   config.after(:each) do
+    Timecop.return
     DatabaseCleaner.clean
   end
 
@@ -59,6 +60,7 @@ end
 
 RSpec::Sidekiq.configure do |config|
   config.warn_when_jobs_not_processed_by_sidekiq = false
+  Sidekiq::Extensions.enable_delay!
 end
 
 Shoulda::Matchers.configure do |config|

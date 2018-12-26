@@ -37,4 +37,4 @@ Rails/CreateTableWithTimestamps:
 
 Style/AsciiComments:
   Exclude:
-    - app/services/pull_rate_service.rb
+    - app/services/fetch_rate_service.rb

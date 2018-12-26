@@ -14,3 +14,5 @@ en:
       date: '%Y-%m-%d'
       time: '%H:%M:%S'
       datetime: '%Y-%m-%d %H:%M:%S'
+  forced_rate:
+    after_message: 'must be after the current time'

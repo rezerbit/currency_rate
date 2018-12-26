@@ -2,11 +2,10 @@
 
 require 'net/http'
 
-# Pulls a currency rate, saves and broadcasts to a websocket.
-class PullRateService
+# Fetches a currency rate, saves and broadcasts to a websocket.
+class FetchRateService
   RATES_SOURCE_URL = 'http://www.cbr.ru/scripts/XML_daily.asp'
   CURRENCY_CODE = 'USD'
-  CHANNEL = 'rate'
 
   def self.call
     new.call
@@ -14,18 +13,14 @@ class PullRateService
 
   def initialize
     @xml = Net::HTTP.get(URI(RATES_SOURCE_URL))
-    @last_rate = Rate.last
   end
 
   def call
-    return if @last_rate.is_a?(ForcedRate)
-
     parse
     build_rate
-
     return if rate_equal_last_rate?
 
-    save_rate
+    @rate.save!
   end
 
   private
@@ -50,7 +45,7 @@ class PullRateService
   end
 
   def build_rate
-    @rate = FetchedRate.new(value: value * nominal)
+    @rate = FetchedRate.new(value: value * nominal, overridden: overridden?)
   end
 
   def value
@@ -61,18 +56,14 @@ class PullRateService
     @attributes['Nominal'].to_i
   end
 
+  def overridden?
+    last_forced_rate = ForcedRate.last
+    return false if last_forced_rate.nil?
+
+    last_forced_rate.expires_at > Time.current
+  end
+
   def rate_equal_last_rate?
-    @rate.value == @last_rate&.value
-  end
-
-  def save_rate
-    ActiveRecord::Base.transaction do
-      @rate.save!
-      notify
-    end
-  end
-
-  def notify
-    ActionCable.server.broadcast(CHANNEL, @rate.value)
+    @rate.value == FetchedRate.last&.value
   end
 end

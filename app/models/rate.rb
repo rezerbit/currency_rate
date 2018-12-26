@@ -12,5 +12,8 @@
 #  expires_at :datetime
 #
 class Rate < ApplicationRecord
+  CHANNEL = 'rate'
+
   validates :value, presence: true, numericality: true, format: { with: /\A\d{1,4}(.\d{0,4})?\z/ }
+  after_create_commit { ActionCable.server.broadcast(CHANNEL, self) }
 end

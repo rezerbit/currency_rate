@@ -2,7 +2,8 @@
 
 FactoryBot.define do
   factory :fetched_rate do
-    sequence(:value) { |n| 0.123456e2 + BigDecimal("0.000#{n}") }
+    value { |n| 0.123456e2 + BigDecimal("0.000#{n}") }
+    type { FetchedRate }
     overridden { false }
   end
 end

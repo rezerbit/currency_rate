@@ -3,18 +3,23 @@
     .rate-form__title
       = t('create_forced_rate')
 
-    = form_for @rate, url: forced_rates_path, method: :post do |f|
-      = hidden_field_tag :timezone, '', class: 'js-rate-form__timezone'
-
+    = form_for @forced_rate, url: forced_rates_path, method: :post do |f|
       .field
         = f.label :value, class: 'label'
         .control
-          = f.text_field :value, placeholder: t('rate_value_placeholder'), class: 'input'
+          = f.text_field :value,
+                         placeholder: t('rate_value_placeholder'),
+                         class: "input #{'is-danger' if @forced_rate.errors.keys.include?(:value)}"
+        = c('input-error', object: @forced_rate, field: :value)
 
       .field
         = f.label :expires_at, class: 'label'
         .control
-          = f.text_field :expires_at, placeholder: t('rate_expires_at_placeholder'), class: 'input flatpickr'
+          = f.text_field :expires_at,
+                         placeholder: t('rate_expires_at_placeholder'),
+                         class: "input flatpickr #{'is-danger' if @forced_rate.errors.keys.include?(:expires_at)}"
+        = c('input-error', object: @forced_rate, field: :expires_at)
+
 
       .field.is-grouped.is-grouped-right
         .control
