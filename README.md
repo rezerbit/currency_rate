@@ -6,6 +6,10 @@
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/cd32e7974e814ba38512bf4942c4f984)](https://www.codacy.com/app/rezerbit/currency_rate?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=rezerbit/currency_rate&amp;utm_campaign=Badge_Grade)
 [![Codecov](https://codecov.io/gh/rezerbit/currency_rate/branch/master/graph/badge.svg)](https://codecov.io/gh/rezerbit/currency_rate)
 
+Demo: https://currency_rate.rezerbit.com/
+
+![demo](demo.png)
+
 ## Development
 
 ```bash
