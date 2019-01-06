@@ -4,6 +4,8 @@
 class ForcedRatesController < ApplicationController
   def new
     @forced_rate = ForcedRate.last || ForcedRate.new
+    # HACK: Flatpickr has a bug. Flatpickr doesn't understand utc format in Safari.
+    @forced_rate.expires_at = @forced_rate.expires_at&.iso8601
   end
 
   def create
