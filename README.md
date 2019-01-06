@@ -1,6 +1,6 @@
 # currency_rate
 
-📈The application which fetches, stores and displays currency exchange rate.
+📈The application which fetches, stores and displays a currency exchange rate.
 
 [![CI](https://drone.rezerbit.com/api/badges/rezerbit/currency_rate/status.svg "")](https://drone.rezerbit.com/rezerbit/currency_rate)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/cd32e7974e814ba38512bf4942c4f984)](https://www.codacy.com/app/rezerbit/currency_rate?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=rezerbit/currency_rate&amp;utm_campaign=Badge_Grade)
